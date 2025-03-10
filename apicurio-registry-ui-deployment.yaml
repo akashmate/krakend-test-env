@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: apicurio-test-registry-ui
-  namespace: krackend-test-prj
+  namespace: krakend-test-prj
   labels:
     app: apicurio-test-registry-ui
 spec:
