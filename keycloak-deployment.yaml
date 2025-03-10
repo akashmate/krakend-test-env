@@ -42,7 +42,7 @@ spec:
         - name: KC_DB
           value: "postgres"
         - name: KC_DB_URL
-          value: "jdbc:postgresql://10.175.1.110:31440/postgres?user=postgres&password=NLeKdOXDsi"
+          value: "jdbc:postgresql://10.175.1.110:30047/postgres?user=postgres&password=NLeKdOXDsi"
         volumeMounts:
         - name: keycloak-data
           mountPath: /opt/keycloak/data
