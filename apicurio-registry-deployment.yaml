@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apicurio-test-registry
+  namespace: krakend-test-prj
+  labels:
+    app: apicurio-test-registry
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: apicurio-test-registry
+  template:
+    metadata:
+      labels:
+        app: apicurio-test-registry
+    spec:
+      containers:
+        - name: apicurio-test-registry
+          image: harbor.massiltech.com/krakendproject/apicurio-registry:3.0.5
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APICURIO_STORAGE_KIND
+              value: "sql"
+            - name: APICURIO_STORAGE_SQL_KIND
+              value: "postgresql"
+            - name: APICURIO_DATASOURCE_URL
+              value: "jdbc:postgresql://10.175.1.110:30047/postgres?user=postgres&password=NLeKdOXDsi"
+            - name: APICURIO_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: APICURIO_DATASOURCE_PASSWORD
+              value: "NLeKdOXDsi"
+      volumes:
+        - name: apicurio-data
+          persistentVolumeClaim:
+            claimName: keycloak-test-pvc
