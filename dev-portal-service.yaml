@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-portal-test-service
+  namespace: krakend-test-prj
+  labels:
+    app: dev-portal-test
+spec:
+  selector:
+    app: dev-portal-test
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 31117
+  type: NodePort

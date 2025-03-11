@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-portal-test-deployment
+  namespace: krakend-test-prj
+  labels:
+    app: dev-portal-test
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: dev-portal-test
+  template:
+    metadata:
+      labels:
+        app: dev-portal-test
+    spec:
+      containers:
+      - name: dev-portal-test
+        image: harbor.massiltech.com/krakendproject/test-dev-portal-img/dev-portal:2025.03.11
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

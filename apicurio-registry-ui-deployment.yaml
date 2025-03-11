@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apicurio-test-registry-ui
+  namespace: krakend-test-prj
+  labels:
+    app: apicurio-test-registry-ui
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: apicurio-test-registry-ui
+  template:
+    metadata:
+      labels:
+        app: apicurio-test-registry-ui
+    spec:
+      containers:
+        - name: apicurio-test-registry-ui
+          image: harbor.massiltech.com/krakendproject/apicurio-registry-ui:3.0.5
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APICURIO_REGISTRY_URL
+              value: "http://10.175.1.110:31855/apis/registry/v3"
